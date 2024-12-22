@@ -1,4 +1,6 @@
-input, textarea, select {
+input,
+textarea,
+select {
     appearance: none;
     width: 100%;
     border-radius: .5rem;
@@ -25,7 +27,8 @@ textarea:focus,
 input[type="date"]:focus-within {
     outline: .25rem solid var(--surface-secondary);
     border-color: var(--stroke-highlight);
-    outline-offset: 1px; /* configuração para compatibilidade com safari */
+    outline-offset: 1px;
+    /* configuração para compatibilidade com safari */
 }
 
 input[type="date"] {
@@ -37,7 +40,7 @@ input[type="date"] {
 
     &::before {
         content: "";
-        
+
         width: 1.25rem;
         height: 1.25rem;
 
@@ -73,11 +76,11 @@ input {
         color: var(--text-primary);
     }
 
-    &:invalid {
+    &:invalid:not(:focus):not(:placeholder-shown) {
         border: 0.125rem solid var(--semantic-error);
     }
 
-    & + small {
+    &+small {
         font: var(--text-sm);
         color: #78716C;
 
@@ -85,8 +88,8 @@ input {
         margin-top: .25rem;
     }
 
-    &[required] + .error {
-        display: flex;
+    &[required]+.error {
+        display: none;
         align-items: center;
         gap: .25rem;
 
@@ -96,7 +99,11 @@ input {
         margin-top: .25rem;
     }
 
-    &:not(:focus):valid + .error {
+    &:invalid:not(:focus):not(:placeholder-shown)+.error {
+        display: flex;
+    }
+
+    &:not(:focus):valid+.error {
         display: none;
     }
 }
